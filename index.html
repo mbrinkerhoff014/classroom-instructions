@@ -29,9 +29,10 @@
       flex-direction: column;
       align-items: center;
       width: 80px;
+      font-size: 24px;
     }
-    .icon-option input {
-      margin-top: 5px;
+    .icon-option span {
+      font-size: 40px;
     }
     .inline {
       display: flex;
@@ -46,74 +47,98 @@
       margin-top: 5px;
       width: 100%;
     }
+    #results {
+      display: none;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
   <h1>Classroom Instruction Setup</h1>
 
-  <!-- Materials Needed -->
-  <div class="section">
-    <h2>Materials Needed</h2>
-    <div class="icon-grid">
-      <div class="icon-option"><span>✏️</span><label><input type="checkbox"/> Pencil</label></div>
-      <div class="icon-option"><span>📄</span><label><input type="checkbox"/> Worksheet</label></div>
-      <div class="icon-option"><span>📋</span><label><input type="checkbox"/> Clipboard</label></div>
-      <div class="icon-option"><span>🧻</span><label><input type="checkbox"/> Whiteboard</label></div>
-      <div class="icon-option"><span>🖊️</span><label><input type="checkbox"/> Dry Erase Marker</label></div>
-      <div class="icon-option"><span>🛡️</span><label><input type="checkbox"/> Privacy Folder</label></div>
-      <div class="icon-option"><span>✂️</span><label><input type="checkbox"/> Scissors</label></div>
-      <div class="icon-option"><span>🧴</span><label><input type="checkbox"/> Glue</label></div>
-      <div class="icon-option"><span>🖍️</span><label><input type="checkbox"/> Crayons</label></div>
-      <div class="icon-option"><span>📚</span><label><input type="checkbox"/> Book</label></div>
-      <div class="icon-option"><span>📏</span><label><input type="checkbox"/> Ruler</label></div>
+  <div id="form">
+    <!-- Materials Needed -->
+    <div class="section">
+      <h2>Materials Needed</h2>
+      <div class="icon-grid">
+        <div class="icon-option"><span>✏️</span><label><input type="checkbox" value="Pencil"/> Pencil</label></div>
+        <div class="icon-option"><span>📄</span><label><input type="checkbox" value="Worksheet"/> Worksheet</label></div>
+        <div class="icon-option"><span>📋</span><label><input type="checkbox" value="Clipboard"/> Clipboard</label></div>
+        <div class="icon-option"><span>🧻</span><label><input type="checkbox" value="Whiteboard"/> Whiteboard</label></div>
+        <div class="icon-option"><span>🖊️</span><label><input type="checkbox" value="Dry Erase Marker"/> Dry Erase Marker</label></div>
+        <div class="icon-option"><span>🛡️</span><label><input type="checkbox" value="Privacy Folder"/> Privacy Folder</label></div>
+        <div class="icon-option"><span>✂️</span><label><input type="checkbox" value="Scissors"/> Scissors</label></div>
+        <div class="icon-option"><span>🧴</span><label><input type="checkbox" value="Glue"/> Glue</label></div>
+        <div class="icon-option"><span>🖍️</span><label><input type="checkbox" value="Crayons"/> Crayons</label></div>
+        <div class="icon-option"><span>📚</span><label><input type="checkbox" value="Book"/> Book</label></div>
+        <div class="icon-option"><span>📏</span><label><input type="checkbox" value="Ruler"/> Ruler</label></div>
+      </div>
     </div>
+
+    <!-- Noise Level -->
+    <div class="section">
+      <h2>Noise Level</h2>
+      <div class="inline">
+        <label><input type="radio" name="noise" value="No Voices"/> No Voices</label>
+        <label><input type="radio" name="noise" value="Whisper"/> Whisper</label>
+        <label><input type="radio" name="noise" value="Partner Voice"/> Partner Voice</label>
+        <label><input type="radio" name="noise" value="Group Voice"/> Group Voice</label>
+      </div>
+    </div>
+
+    <!-- Partners Allowed -->
+    <div class="section">
+      <h2>Partners Allowed</h2>
+      <div class="inline">
+        <label><input type="radio" name="partners" value="Yes"/> Yes</label>
+        <label><input type="radio" name="partners" value="No"/> No</label>
+      </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="section">
+      <h2>Instructions</h2>
+      <textarea id="instructions" placeholder="1. Complete the math page\n2. Start your reading journal..."></textarea>
+    </div>
+
+    <!-- I'm Done, Now What -->
+    <div class="section">
+      <h2>I'm Done, Now What?</h2>
+      <div>
+        <label><input type="checkbox" class="done-option" value="Read a Book"/> Read a Book</label><br/>
+        <label><input type="checkbox" class="done-option" id="computerOption" value="Computers" onclick="toggleComputerInput()"/> Computers</label>
+        <input type="text" id="computerText" placeholder="Type computer program..." style="display:none;"/><br/>
+        <label><input type="checkbox" class="done-option" value="Packets"/> Packets</label><br/>
+        <label><input type="checkbox" class="done-option" value="Write a Story"/> Write a Story</label><br/>
+        <label><input type="checkbox" class="done-option" value="Finish Other Work"/> Finish Other Work</label><br/>
+        <label><input type="checkbox" class="done-option" id="otherOption" value="Other" onclick="toggleOtherInput()"/> Other</label>
+        <input type="text" id="otherText" placeholder="Type other activity..." style="display:none;"/>
+      </div>
+    </div>
+
+    <button onclick="showResults()">Show Results</button>
   </div>
 
-  <!-- Noise Level -->
-  <div class="section">
-    <h2>Noise Level</h2>
-    <div class="inline">
-      <label><input type="radio" name="noise"/> No Voices</label>
-      <label><input type="radio" name="noise"/> Whisper</label>
-      <label><input type="radio" name="noise"/> Partner Voice</label>
-      <label><input type="radio" name="noise"/> Group Voice</label>
-    </div>
-  </div>
-
-  <!-- Partners Allowed -->
-  <div class="section">
-    <h2>Partners Allowed</h2>
-    <div class="inline">
-      <label><input type="radio" name="partners"/> Yes</label>
-      <label><input type="radio" name="partners"/> No</label>
-    </div>
-  </div>
-
-  <!-- Instructions -->
-  <div class="section">
-    <h2>Instructions</h2>
-    <textarea placeholder="1. Complete the math page\n2. Start your reading journal...\n"></textarea>
-  </div>
-
-  <!-- I'm Done, Now What -->
-  <div class="section">
-    <h2>I'm Done, Now What?</h2>
-    <div>
-      <label><input type="checkbox"/> Read a Book</label><br/>
-      <label>
-        <input type="checkbox" id="computerOption" onclick="toggleComputerInput()"/>
-        Computers
-      </label>
-      <input type="text" id="computerText" placeholder="Type computer program..." style="display:none;"/><br/>
-      <label><input type="checkbox"/> Packets</label><br/>
-      <label><input type="checkbox"/> Write a Story</label><br/>
-      <label><input type="checkbox"/> Finish Other Work</label><br/>
-      <label>
-        <input type="checkbox" id="otherOption" onclick="toggleOtherInput()"/>
-        Other
-      </label>
-      <input type="text" id="otherText" placeholder="Type other activity..." style="display:none;"/>
-    </div>
+  <div id="results">
+    <h2>Instruction Summary</h2>
+    <p><strong>Materials Needed:</strong> <span id="res-materials"></span></p>
+    <p><strong>Noise Level:</strong> <span id="res-noise"></span></p>
+    <p><strong>Partners Allowed:</strong> <span id="res-partners"></span></p>
+    <p><strong>Instructions:</strong></p>
+    <pre id="res-instructions"></pre>
+    <p><strong>I'm Done, Now What:</strong></p>
+    <ol id="res-done"></ol>
+    <button onclick="resetForm()">Back & Reset</button>
   </div>
 
   <script>
@@ -122,10 +147,52 @@
       const input = document.getElementById('computerText');
       input.style.display = checkbox.checked ? 'block' : 'none';
     }
+
     function toggleOtherInput() {
       const checkbox = document.getElementById('otherOption');
       const input = document.getElementById('otherText');
       input.style.display = checkbox.checked ? 'block' : 'none';
+    }
+
+    function showResults() {
+      const materials = Array.from(document.querySelectorAll('.icon-option input:checked')).map(cb => cb.value);
+      const noise = document.querySelector('input[name="noise"]:checked')?.value || '';
+      const partners = document.querySelector('input[name="partners"]:checked')?.value || '';
+      const instructions = document.getElementById('instructions').value;
+
+      let doneItems = [];
+      document.querySelectorAll('.done-option:checked').forEach(opt => {
+        if (opt.id === 'computerOption') {
+          const program = document.getElementById('computerText').value;
+          doneItems.push('Use Computers' + (program ? ' - ' + program : ''));
+        } else if (opt.id === 'otherOption') {
+          const other = document.getElementById('otherText').value;
+          doneItems.push('Other - ' + other);
+        } else {
+          doneItems.push(opt.value);
+        }
+      });
+
+      document.getElementById('res-materials').textContent = materials.join(', ');
+      document.getElementById('res-noise').textContent = noise;
+      document.getElementById('res-partners').textContent = partners;
+      document.getElementById('res-instructions').textContent = instructions;
+
+      const doneList = document.getElementById('res-done');
+      doneList.innerHTML = '';
+      doneItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        doneList.appendChild(li);
+      });
+
+      document.getElementById('form').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
+    }
+
+    function resetForm() {
+      document.getElementById('form').reset();
+      location.reload();
     }
   </script>
 </body>
