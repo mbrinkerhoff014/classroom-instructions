@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classroom Instructions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .icon-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .icon-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80px;
+    }
+    .icon-option input {
+      margin-top: 5px;
+    }
+    .inline {
+      display: flex;
+      gap: 15px;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-top: 10px;
+    }
+    input[type="text"] {
+      margin-top: 5px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Classroom Instruction Setup</h1>
+
+  <!-- Materials Needed -->
+  <div class="section">
+    <h2>Materials Needed</h2>
+    <div class="icon-grid">
+      <div class="icon-option"><span>✏️</span><label><input type="checkbox"/> Pencil</label></div>
+      <div class="icon-option"><span>📄</span><label><input type="checkbox"/> Worksheet</label></div>
+      <div class="icon-option"><span>📋</span><label><input type="checkbox"/> Clipboard</label></div>
+      <div class="icon-option"><span>🧻</span><label><input type="checkbox"/> Whiteboard</label></div>
+      <div class="icon-option"><span>🖊️</span><label><input type="checkbox"/> Dry Erase Marker</label></div>
+      <div class="icon-option"><span>🛡️</span><label><input type="checkbox"/> Privacy Folder</label></div>
+      <div class="icon-option"><span>✂️</span><label><input type="checkbox"/> Scissors</label></div>
+      <div class="icon-option"><span>🧴</span><label><input type="checkbox"/> Glue</label></div>
+      <div class="icon-option"><span>🖍️</span><label><input type="checkbox"/> Crayons</label></div>
+      <div class="icon-option"><span>📚</span><label><input type="checkbox"/> Book</label></div>
+      <div class="icon-option"><span>📏</span><label><input type="checkbox"/> Ruler</label></div>
+    </div>
+  </div>
+
+  <!-- Noise Level -->
+  <div class="section">
+    <h2>Noise Level</h2>
+    <div class="inline">
+      <label><input type="radio" name="noise"/> No Voices</label>
+      <label><input type="radio" name="noise"/> Whisper</label>
+      <label><input type="radio" name="noise"/> Partner Voice</label>
+      <label><input type="radio" name="noise"/> Group Voice</label>
+    </div>
+  </div>
+
+  <!-- Partners Allowed -->
+  <div class="section">
+    <h2>Partners Allowed</h2>
+    <div class="inline">
+      <label><input type="radio" name="partners"/> Yes</label>
+      <label><input type="radio" name="partners"/> No</label>
+    </div>
+  </div>
+
+  <!-- Instructions -->
+  <div class="section">
+    <h2>Instructions</h2>
+    <textarea placeholder="1. Complete the math page\n2. Start your reading journal...\n"></textarea>
+  </div>
+
+  <!-- I'm Done, Now What -->
+  <div class="section">
+    <h2>I'm Done, Now What?</h2>
+    <div>
+      <label><input type="checkbox"/> Read a Book</label><br/>
+      <label>
+        <input type="checkbox" id="computerOption" onclick="toggleComputerInput()"/>
+        Computers
+      </label>
+      <input type="text" id="computerText" placeholder="Type computer program..." style="display:none;"/><br/>
+      <label><input type="checkbox"/> Packets</label><br/>
+      <label><input type="checkbox"/> Write a Story</label><br/>
+      <label><input type="checkbox"/> Finish Other Work</label><br/>
+      <label>
+        <input type="checkbox" id="otherOption" onclick="toggleOtherInput()"/>
+        Other
+      </label>
+      <input type="text" id="otherText" placeholder="Type other activity..." style="display:none;"/>
+    </div>
+  </div>
+
+  <script>
+    function toggleComputerInput() {
+      const checkbox = document.getElementById('computerOption');
+      const input = document.getElementById('computerText');
+      input.style.display = checkbox.checked ? 'block' : 'none';
+    }
+    function toggleOtherInput() {
+      const checkbox = document.getElementById('otherOption');
+      const input = document.getElementById('otherText');
+      input.style.display = checkbox.checked ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>
