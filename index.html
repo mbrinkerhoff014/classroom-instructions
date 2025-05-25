@@ -4,13 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Classroom Instructions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&family=Ultra&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Fredoka', sans-serif;
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
       background-color: #f8f9fa;
+    }
+    h1, h2 {
+      font-family: 'Ultra', serif;
     }
     h2 {
       border-bottom: 2px solid #ccc;
@@ -22,17 +26,17 @@
     .icon-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 20px;
     }
     .icon-option {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 80px;
-      font-size: 24px;
+      width: 100px;
     }
-    .icon-option span {
-      font-size: 40px;
+    .icon-option img {
+      width: 60px;
+      height: 60px;
     }
     .inline {
       display: flex;
@@ -71,17 +75,17 @@
     <div class="section">
       <h2>Materials Needed</h2>
       <div class="icon-grid">
-        <div class="icon-option"><span>✏️</span><label><input type="checkbox" value="Pencil"/> Pencil</label></div>
-        <div class="icon-option"><span>📄</span><label><input type="checkbox" value="Worksheet"/> Worksheet</label></div>
-        <div class="icon-option"><span>📋</span><label><input type="checkbox" value="Clipboard"/> Clipboard</label></div>
-        <div class="icon-option"><span>🧻</span><label><input type="checkbox" value="Whiteboard"/> Whiteboard</label></div>
-        <div class="icon-option"><span>🖊️</span><label><input type="checkbox" value="Dry Erase Marker"/> Dry Erase Marker</label></div>
-        <div class="icon-option"><span>🛡️</span><label><input type="checkbox" value="Privacy Folder"/> Privacy Folder</label></div>
-        <div class="icon-option"><span>✂️</span><label><input type="checkbox" value="Scissors"/> Scissors</label></div>
-        <div class="icon-option"><span>🧴</span><label><input type="checkbox" value="Glue"/> Glue</label></div>
-        <div class="icon-option"><span>🖍️</span><label><input type="checkbox" value="Crayons"/> Crayons</label></div>
-        <div class="icon-option"><span>📚</span><label><input type="checkbox" value="Book"/> Book</label></div>
-        <div class="icon-option"><span>📏</span><label><input type="checkbox" value="Ruler"/> Ruler</label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Pencil"/><img src="https://twemoji.maxcdn.com/v/latest/72x72/270f.png" alt="Pencil"></label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Worksheet"/><img src="https://twemoji.maxcdn.com/v/latest/72x72/1f4c4.png" alt="Worksheet"></label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Clipboard"/><img src="https://twemoji.maxcdn.com/v/latest/72x72/1f4cb.png" alt="Clipboard"></label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Whiteboard"/><img src="/mnt/data/58fde836-c324-4556-ac2d-480bc81a4e78.png" alt="Whiteboard"></label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Dry Erase Marker"/><img src="/mnt/data/2849547d-3025-4102-aa9a-a856fffbd5a3.png" alt="Dry Erase Marker"></label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Privacy Folder"/><img src="/mnt/data/9a5a837c-60c7-4bdc-9d59-00c8f1d9b822.png" alt="Privacy Folder"></label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Scissors"/><img src="https://twemoji.maxcdn.com/v/latest/72x72/2702.png" alt="Scissors"></label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Glue"/><img src="https://twemoji.maxcdn.com/v/latest/72x72/1f9f5.png" alt="Glue"></label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Crayons"/><img src="https://twemoji.maxcdn.com/v/latest/72x72/1f58c.png" alt="Crayons"></label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Book"/><img src="https://twemoji.maxcdn.com/v/latest/72x72/1f4da.png" alt="Book"></label></div>
+        <div class="icon-option"><label><input type="checkbox" value="Ruler"/><img src="https://twemoji.maxcdn.com/v/latest/72x72/1f4cf.png" alt="Ruler"></label></div>
       </div>
     </div>
 
@@ -138,7 +142,7 @@
     <pre id="res-instructions"></pre>
     <p><strong>I'm Done, Now What:</strong></p>
     <ol id="res-done"></ol>
-    <button onclick="resetForm()">Back & Reset</button>
+    <button onclick="goBack()">Back & Reset</button>
   </div>
 
   <script>
@@ -180,7 +184,7 @@
 
       const doneList = document.getElementById('res-done');
       doneList.innerHTML = '';
-      doneItems.forEach(item => {
+      doneItems.forEach((item, index) => {
         const li = document.createElement('li');
         li.textContent = item;
         doneList.appendChild(li);
@@ -190,7 +194,9 @@
       document.getElementById('results').style.display = 'block';
     }
 
-    function resetForm() {
+    function goBack() {
+      document.getElementById('results').style.display = 'none';
+      document.getElementById('form').style.display = 'block';
       document.getElementById('form').reset();
       location.reload();
     }
