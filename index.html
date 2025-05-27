@@ -201,10 +201,11 @@
       </div>
     </div>
 
-    <div class="section">
-      <h2>Instructions</h2>
-      <textarea id="instructions" placeholder="1. Complete the math page\n2. Start your reading journal..."></textarea>
-    </div>
+    <!-- Instructions -->
+<div class="section">
+  <h2>Instructions</h2>
+  <textarea id="instructions" placeholder="Type instructions here. Press Enter to start a new step..."></textarea>
+</div>
 
     <div class="section">
       <h2>I'm Done, Now What?</h2>
@@ -227,7 +228,7 @@
     <h2>Instruction Summary</h2>
     <p><strong>Materials Needed:</strong></p>
     <div id="res-materials"></div>
-    <p><strong>Noise Level:</strong> <span id="res-noise"></span></p>
+    <p><strong>Noise Level:</strong> <span id="res-noise"></span> <img id="res-noise-img" style="height: 40px; vertical-align: middle;" alt="Noise Level Icon"></p>
     <p><strong>Partners Allowed:</strong> <span id="res-partners"></span></p>
     <p><strong>Instructions:</strong></p>
     <pre id="res-instructions"></pre>
@@ -237,81 +238,82 @@
   </div>
 
   <script>
-    const doneClickOrder = [];
+  function toggleComputerInput() {
+    const checkbox = document.getElementById('computerOption');
+    const input = document.getElementById('computerText');
+    input.style.display = checkbox.checked ? 'block' : 'none';
+  }
 
-    function toggleComputerInput() {
-      document.getElementById('computerText').style.display = document.getElementById('computerOption').checked ? 'block' : 'none';
-    }
+  function toggleOtherInput() {
+    const checkbox = document.getElementById('otherOption');
+    const input = document.getElementById('otherText');
+    input.style.display = checkbox.checked ? 'block' : 'none';
+  }
 
-    function toggleOtherInput() {
-      document.getElementById('otherText').style.display = document.getElementById('otherOption').checked ? 'block' : 'none';
-    }
+  function showResults() {
+    // Materials
+    const materials = Array.from(document.querySelectorAll('.icon-option input:checked')).map(cb => cb.value);
+    document.getElementById('res-materials').textContent = materials.join(', ');
 
-    document.querySelectorAll('.done-option').forEach(cb => {
-      cb.addEventListener('click', e => {
-        const val = cb.value;
-        const id = cb.id;
-        const checked = cb.checked;
+    // Noise Level
+    const noiseInput = document.querySelector('input[name="noise"]:checked');
+    const noiseText = noiseInput ? noiseInput.value : '';
+    const noiseImg = noiseInput ? noiseInput.dataset.img : '';
+    document.getElementById('res-noise').textContent = noiseText;
+    document.getElementById('res-noise-img').src = noiseImg;
 
-        if (checked && !doneClickOrder.includes(id || val)) {
-          doneClickOrder.push(id || val);
-        } else if (!checked) {
-          const idx = doneClickOrder.indexOf(id || val);
-          if (idx > -1) doneClickOrder.splice(idx, 1);
-        }
-      });
+    // Partners
+    const partners = document.querySelector('input[name="partners"]:checked')?.value || '';
+    document.getElementById('res-partners').textContent = partners;
+
+    // Instructions with numbering
+    const instructionText = document.getElementById('instructions').value;
+    const steps = instructionText.split('\n').filter(step => step.trim() !== '');
+    const numberedSteps = steps.map((step, i) => `${i + 1}. ${step}`).join('\n');
+    document.getElementById('res-instructions').textContent = numberedSteps;
+
+    // Done Options in click order
+    const doneList = document.getElementById('res-done');
+    doneList.innerHTML = '';
+    const allDoneOptions = Array.from(document.querySelectorAll('.done-option'));
+    const orderedDoneItems = [];
+
+    allDoneOptions.forEach(opt => {
+      opt.dataset.timestamp = opt.checked ? Date.now() + Math.random() : '';
     });
 
-    function showResults() {
-      const checked = document.querySelectorAll('.icon-option input:checked');
-      const resContainer = document.getElementById('res-materials');
-      resContainer.innerHTML = '';
-
-      checked.forEach(cb => {
-        const value = cb.value;
-        const img = cb.dataset.img;
-        const div = document.createElement('div');
-        div.className = 'material-item';
-        div.innerHTML = `<img src="${img}" alt="${value}"><div class="icon-label">${value}</div>`;
-        resContainer.appendChild(div);
-      });
-
-      const noise = document.querySelector('input[name="noise"]:checked')?.value || '';
-      const partners = document.querySelector('input[name="partners"]:checked')?.value || '';
-      const instructions = document.getElementById('instructions').value;
-
-      document.getElementById('res-noise').textContent = noise;
-      document.getElementById('res-partners').textContent = partners;
-      document.getElementById('res-instructions').textContent = instructions;
-
-      const doneList = document.getElementById('res-done');
-      doneList.innerHTML = '';
-      doneClickOrder.forEach(id => {
-        const opt = document.getElementById(id) || document.querySelector(`.done-option[value="${id}"]`);
-        if (opt && opt.checked) {
-          let text = opt.value;
-          if (id === 'computerOption') {
-            const val = document.getElementById('computerText').value;
-            text = 'Use Computers' + (val ? ' - ' + val : '');
-          } else if (id === 'otherOption') {
-            const val = document.getElementById('otherText').value;
-            text = 'Other - ' + val;
-          }
-          const li = document.createElement('li');
-          li.textContent = text;
-          doneList.appendChild(li);
+    document.querySelectorAll('.done-option:checked')
+      .forEach(opt => {
+        const id = opt.id;
+        let text = opt.value;
+        if (id === 'computerOption') {
+          const program = document.getElementById('computerText').value;
+          text = 'Use Computers' + (program ? ' - ' + program : '');
+        } else if (id === 'otherOption') {
+          const other = document.getElementById('otherText').value;
+          text = 'Other - ' + other;
         }
+        orderedDoneItems.push({ text, timestamp: parseFloat(opt.dataset.timestamp) });
       });
 
-      document.getElementById('form').style.display = 'none';
-      document.getElementById('results').style.display = 'block';
-    }
+    orderedDoneItems.sort((a, b) => a.timestamp - b.timestamp);
 
-    function goBack() {
-      document.getElementById('results').style.display = 'none';
-      document.getElementById('form').style.display = 'block';
-      location.reload();
-    }
-  </script>
+    orderedDoneItems.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.text;
+      doneList.appendChild(li);
+    });
+
+    document.getElementById('form').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+  }
+
+  function goBack() {
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('form').style.display = 'block';
+    location.reload(); // Full reset
+  }
+</script>
+
 </body>
 </html>
