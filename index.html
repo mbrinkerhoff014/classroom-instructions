@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Classroom Instructions</title> 
+  <title>Classroom Instructions</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka&family=Ultra&display=swap" rel="stylesheet">
   <style>
     body {
@@ -38,6 +38,11 @@
       width: 60px;
       height: 60px;
     }
+    .icon-label {
+      font-size: 12px;
+      margin-top: 4px;
+      text-align: center;
+    }
     .inline {
       display: flex;
       gap: 15px;
@@ -57,6 +62,12 @@
       padding: 20px;
       border: 1px solid #ccc;
     }
+    #res-materials img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
     .hidden {
       display: none;
     }
@@ -72,25 +83,77 @@
 
   <div id="form">
     <!-- Materials Needed -->
- <!-- Materials Needed -->
-<!-- Materials Needed -->
-<div class="section">
-  <h2>Materials Needed</h2>
-  <div class="icon-grid">
-    <div class="icon-option"><label><input type="checkbox" value="Pencil"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/270f.png" alt="Pencil"></label></div>
-    <div class="icon-option"><label><input type="checkbox" value="Worksheet"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4c4.png" alt="Worksheet"></label></div>
-    <div class="icon-option"><label><input type="checkbox" value="Clipboard"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4cb.png" alt="Clipboard"></label></div>
-    <div class="icon-option"><label><input type="checkbox" value="Whiteboard"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f5a9.png" alt="Whiteboard"></label></div>
-    <div class="icon-option"><label><input type="checkbox" value="Dry Erase Marker"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f58a.png" alt="Dry Erase Marker"></label></div>
-    <div class="icon-option"><label><input type="checkbox" value="Privacy Folder"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f5c2.png" alt="Privacy Folder"></label></div>
-    <div class="icon-option"><label><input type="checkbox" value="Scissors"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2702.png" alt="Scissors"></label></div>
-    <div class="icon-option"><label><input type="checkbox" value="Glue"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9f5.png" alt="Glue"></label></div>
-    <div class="icon-option"><label><input type="checkbox" value="Crayons"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f58c.png" alt="Crayons"></label></div>
-    <div class="icon-option"><label><input type="checkbox" value="Book"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4da.png" alt="Book"></label></div>
-    <div class="icon-option"><label><input type="checkbox" value="Ruler"/><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4cf.png" alt="Ruler"></label></div>
-  </div>
-</div>
-
+    <div class="section">
+      <h2>Materials Needed</h2>
+      <div class="icon-grid">
+        <div class="icon-option">
+          <label><input type="checkbox" value="Pencil" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/270f.png">
+            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/270f.png" alt="Pencil">
+            <div class="icon-label">Pencil</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Worksheet" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4c4.png">
+            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4c4.png" alt="Worksheet">
+            <div class="icon-label">Worksheet</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Clipboard" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4cb.png">
+            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4cb.png" alt="Clipboard">
+            <div class="icon-label">Clipboard</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Whiteboard" data-img="https://openmoji.org/data/color/svg/E1F1.svg">
+            <img src="https://openmoji.org/data/color/svg/E1F1.svg" alt="Whiteboard">
+            <div class="icon-label">Whiteboard</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Dry Erase Marker" data-img="https://openmoji.org/data/color/svg/1F58A.svg">
+            <img src="https://openmoji.org/data/color/svg/1F58A.svg" alt="Dry Erase Marker">
+            <div class="icon-label">Dry Erase Marker</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Privacy Folder" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f5c3.png">
+            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f5c3.png" alt="Privacy Folder">
+            <div class="icon-label">Privacy Folder</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Scissors" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2702.png">
+            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2702.png" alt="Scissors">
+            <div class="icon-label">Scissors</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Glue" data-img="https://openmoji.org/data/color/svg/1F9F5.svg">
+            <img src="https://openmoji.org/data/color/svg/1F9F5.svg" alt="Glue">
+            <div class="icon-label">Glue</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Crayons" data-img="https://openmoji.org/data/color/svg/1F58C.svg">
+            <img src="https://openmoji.org/data/color/svg/1F58C.svg" alt="Crayons">
+            <div class="icon-label">Crayons</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Book" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4da.png">
+            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4da.png" alt="Book">
+            <div class="icon-label">Book</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Ruler" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4cf.png">
+            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4cf.png" alt="Ruler">
+            <div class="icon-label">Ruler</div>
+          </label>
+        </div>
+      </div>
+    </div>
 
     <!-- Noise Level -->
     <div class="section">
@@ -149,6 +212,18 @@
   </div>
 
   <script>
+    let doneClickOrder = [];
+
+    document.querySelectorAll('.done-option').forEach(opt => {
+      opt.addEventListener('change', () => {
+        if (opt.checked) {
+          doneClickOrder.push(opt);
+        } else {
+          doneClickOrder = doneClickOrder.filter(o => o !== opt);
+        }
+      });
+    });
+
     function toggleComputerInput() {
       const checkbox = document.getElementById('computerOption');
       const input = document.getElementById('computerText');
@@ -162,32 +237,31 @@
     }
 
     function showResults() {
-      const materials = Array.from(document.querySelectorAll('.icon-option input:checked')).map(cb => cb.value);
+      const materials = Array.from(document.querySelectorAll('.icon-option input:checked')).map(cb => {
+        const icon = cb.getAttribute("data-img");
+        return `<img src="${icon}" alt="${cb.value} icon"> ${cb.value}`;
+      });
+
       const noise = document.querySelector('input[name="noise"]:checked')?.value || '';
       const partners = document.querySelector('input[name="partners"]:checked')?.value || '';
       const instructions = document.getElementById('instructions').value;
 
-      let doneItems = [];
-      document.querySelectorAll('.done-option:checked').forEach(opt => {
-        if (opt.id === 'computerOption') {
-          const program = document.getElementById('computerText').value;
-          doneItems.push('Use Computers' + (program ? ' - ' + program : ''));
-        } else if (opt.id === 'otherOption') {
-          const other = document.getElementById('otherText').value;
-          doneItems.push('Other - ' + other);
-        } else {
-          doneItems.push(opt.value);
-        }
-      });
-
-      document.getElementById('res-materials').textContent = materials.join(', ');
+      document.getElementById('res-materials').innerHTML = materials.join(', ');
       document.getElementById('res-noise').textContent = noise;
       document.getElementById('res-partners').textContent = partners;
       document.getElementById('res-instructions').textContent = instructions;
 
       const doneList = document.getElementById('res-done');
       doneList.innerHTML = '';
-      doneItems.forEach((item, index) => {
+      doneClickOrder.forEach(opt => {
+        let item = opt.value;
+        if (opt.id === 'computerOption') {
+          const program = document.getElementById('computerText').value;
+          item = 'Use Computers' + (program ? ' - ' + program : '');
+        } else if (opt.id === 'otherOption') {
+          const other = document.getElementById('otherText').value;
+          item = 'Other - ' + other;
+        }
         const li = document.createElement('li');
         li.textContent = item;
         doneList.appendChild(li);
@@ -200,8 +274,11 @@
     function goBack() {
       document.getElementById('results').style.display = 'none';
       document.getElementById('form').style.display = 'block';
-      document.getElementById('form').reset();
-      location.reload();
+      doneClickOrder = [];
+      document.querySelectorAll('input').forEach(i => i.checked = false);
+      document.querySelector('textarea').value = '';
+      document.getElementById('computerText').style.display = 'none';
+      document.getElementById('otherText').style.display = 'none';
     }
   </script>
 </body>
