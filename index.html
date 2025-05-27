@@ -2,110 +2,138 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Classroom Instructions Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Classroom Instructions</title> 
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&family=Ultra&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Fredoka', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
       padding: 20px;
+      background-color: #f8f9fa;
+    }
+    h1, h2 {
+      font-family: 'Ultra', serif;
+    }
+    h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
     }
     .section {
       margin-bottom: 20px;
     }
+    .icon-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
     .icon-option {
-      display: inline-block;
-      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100px;
       text-align: center;
     }
     .icon-option img {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
     }
     .icon-label {
       font-size: 12px;
-      display: block;
-      margin-top: 5px;
+      margin-top: 4px;
+    }
+    .inline {
+      display: flex;
+      gap: 15px;
     }
     textarea {
       width: 100%;
       height: 100px;
+      margin-top: 10px;
     }
-    .hidden {
+    input[type="text"] {
+      margin-top: 5px;
+      width: 100%;
+    }
+    #results {
       display: none;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+    .material-item {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    .material-item img {
+      width: 40px;
+      height: 40px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
+  <h1>Classroom Instruction Setup</h1>
+
   <div id="form">
-    <!-- Materials Needed -->
     <div class="section">
       <h2>Materials Needed</h2>
       <div class="icon-grid">
         <div class="icon-option">
-          <label><input type="checkbox" value="Pencil" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/270f.png">
-            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/270f.png" alt="Pencil">
+          <label><input type="checkbox" value="Pencil" data-img="https://twemoji.maxcdn.com/v/latest/72x72/270f.png">
+            <img src="https://twemoji.maxcdn.com/v/latest/72x72/270f.png" alt="Pencil">
             <div class="icon-label">Pencil</div>
           </label>
         </div>
         <div class="icon-option">
-          <label><input type="checkbox" value="Worksheet" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4c4.png">
-            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4c4.png" alt="Worksheet">
+          <label><input type="checkbox" value="Worksheet" data-img="https://twemoji.maxcdn.com/v/latest/72x72/1f4c4.png">
+            <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f4c4.png" alt="Worksheet">
             <div class="icon-label">Worksheet</div>
           </label>
         </div>
         <div class="icon-option">
-          <label><input type="checkbox" value="Clipboard" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4cb.png">
-            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4cb.png" alt="Clipboard">
+          <label><input type="checkbox" value="Clipboard" data-img="https://twemoji.maxcdn.com/v/latest/72x72/1f4cb.png">
+            <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f4cb.png" alt="Clipboard">
             <div class="icon-label">Clipboard</div>
           </label>
         </div>
-      <label class="icon-option">
-        <input type="checkbox" value="Whiteboard" data-img="https://tse3.mm.bing.net/th?id=OIP.GvSFLPA09AJE5nfLeLKJCgHaDX&pid=Api&P=0&h=220" />
-        <img src="https://tse3.mm.bing.net/th?id=OIP.GvSFLPA09AJE5nfLeLKJCgHaDX&pid=Api&P=0&h=220" alt="Whiteboard">
-        <span class="icon-label">Whiteboard</span>
-      </label>
-      <label class="icon-option">
-        <input type="checkbox" value="Dry Erase Marker" data-img="https://clipground.com/images/dry-erase-marker-clipart-4.jpg" />
-        <img src="https://clipground.com/images/dry-erase-marker-clipart-4.jpg" alt="Dry Erase Marker">
-        <span class="icon-label">Dry Erase Marker</span>
-      </label>
-      <label class="icon-option">
-        <input type="checkbox" value="Glue" data-img="https://attic.sh/qgyup19r5mrpaqyjdg88hqo24o6b" />
-        <img src="https://attic.sh/qgyup19r5mrpaqyjdg88hqo24o6b" alt="Glue">
-        <span class="icon-label">Glue</span>
-      </label>
-      <label class="icon-option">
-        <input type="checkbox" value="Crayons" data-img="https://static-00.iconduck.com/assets.00/crayon-emoji-1023x1024-jlvlvkfc.png" />
-        <img src="https://static-00.iconduck.com/assets.00/crayon-emoji-1023x1024-jlvlvkfc.png" alt="Crayons">
-        <span class="icon-label">Crayons</span>
-      </label>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Whiteboard" data-img="https://tse3.mm.bing.net/th?id=OIP.GvSFLPA09AJE5nfLeLKJCgHaDX&pid=Api&P=0&h=220">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.GvSFLPA09AJE5nfLeLKJCgHaDX&pid=Api&P=0&h=220" alt="Whiteboard">
+            <div class="icon-label">Whiteboard</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Dry Erase Marker" data-img="https://clipground.com/images/dry-erase-marker-clipart-4.jpg">
+            <img src="https://clipground.com/images/dry-erase-marker-clipart-4.jpg" alt="Dry Erase Marker">
+            <div class="icon-label">Dry Erase Marker</div>
+          </label>
+        </div>
+        <div class="icon-option">
+          <label><input type="checkbox" value="Glue" data-img="https://attic.sh/qgyup19r5mrpaqyjdg88hqo24o6b">
+            <img src="https://attic.sh/qgyup19r5mrpaqyjdg88hqo24o6b" alt="Glue">
+            <div class="icon-label">Glue</div>
+          </label>
+        </div>
+        <div class="icon-option">
+  <label><input type="checkbox" value="Crayons" data-img="https://static-00.iconduck.com/assets.00/crayon-emoji-1023x1024-jlvlvkfc.png">
+    <img src="https://static-00.iconduck.com/assets.00/crayon-emoji-1023x1024-jlvlvkfc.png" alt="Crayons">
+    <div class="icon-label">Crayons</div>
+  </label>
+</div>
+      </div>
     </div>
-      <div class="icon-option">
-          <label><input type="checkbox" value="Privacy Folder" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f5c3.png">
-            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f5c3.png" alt="Privacy Folder">
-            <div class="icon-label">Privacy Folder</div>
-          </label>
-        </div>
-        <div class="icon-option">
-          <label><input type="checkbox" value="Scissors" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2702.png">
-            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2702.png" alt="Scissors">
-            <div class="icon-label">Scissors</div>
-          </label>
-        </div>
-      <div class="icon-option">
-          <label><input type="checkbox" value="Book" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4da.png">
-            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4da.png" alt="Book">
-            <div class="icon-label">Book</div>
-          </label>
-        </div>
-        <div class="icon-option">
-          <label><input type="checkbox" value="Ruler" data-img="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4cf.png">
-            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4cf.png" alt="Ruler">
-            <div class="icon-label">Ruler</div>
-          </label>
-        </div>
 
-   <!-- Noise Level -->
+    <!-- Noise Level -->
 <div class="section">
   <h2>Noise Level</h2>
   <div class="icon-grid">
@@ -141,108 +169,123 @@
 </div>
 
 
+    <div class="section">
+      <h2>Partners Allowed</h2>
+      <div class="inline">
+        <label><input type="radio" name="partners" value="Yes"/> Yes</label>
+        <label><input type="radio" name="partners" value="No"/> No</label>
+      </div>
+    </div>
 
-    <!-- Instructions -->
-<div class="section">
-  <h2>Instructions</h2>
-  <textarea id="instructions" placeholder="Type instructions here. Press Enter to start a new step..."></textarea>
-</div>
+    <div class="section">
+      <h2>Instructions</h2>
+      <textarea id="instructions" placeholder="1. Complete the math page\n2. Start your reading journal..."></textarea>
+    </div>
 
-
-    <!-- I'm Done Now What -->
     <div class="section">
       <h2>I'm Done, Now What?</h2>
-      <label><input type="checkbox" class="done-option" value="Read a Book"> Read a Book</label><br>
-      <label><input type="checkbox" class="done-option" value="Finish Incomplete Work"> Finish Incomplete Work</label><br>
-      <label><input type="checkbox" class="done-option" value="Draw"> Draw</label><br>
-      <label><input type="checkbox" id="computerOption" class="done-option" value="Use Computers" onclick="toggleComputerInput()"> Use Computers</label>
-      <input type="text" id="computerText" placeholder="Which program?" style="display:none;"><br>
-      <label><input type="checkbox" id="otherOption" class="done-option" value="Other" onclick="toggleOtherInput()"> Other</label>
-      <input type="text" id="otherText" placeholder="Specify" style="display:none;">
+      <div id="done-options">
+        <label><input type="checkbox" class="done-option" value="Read a Book"/> Read a Book</label><br/>
+        <label><input type="checkbox" class="done-option" id="computerOption" value="Computers" onclick="toggleComputerInput()"/> Computers</label>
+        <input type="text" id="computerText" placeholder="Type computer program..." style="display:none;"/><br/>
+        <label><input type="checkbox" class="done-option" value="Packets"/> Packets</label><br/>
+        <label><input type="checkbox" class="done-option" value="Write a Story"/> Write a Story</label><br/>
+        <label><input type="checkbox" class="done-option" value="Finish Other Work"/> Finish Other Work</label><br/>
+        <label><input type="checkbox" class="done-option" id="otherOption" value="Other" onclick="toggleOtherInput()"/> Other</label>
+        <input type="text" id="otherText" placeholder="Type other activity..." style="display:none;"/>
+      </div>
     </div>
 
     <button onclick="showResults()">Show Results</button>
   </div>
 
-  <div id="results" class="hidden">
-    <h2>Results</h2>
-    <p><strong>Materials:</strong> <span id="res-materials"></span></p>
-    <p><strong>Noise Level:</strong> <span id="res-noise"></span> <img id="res-noise-img" style="height: 40px; vertical-align: middle;" alt="Noise Level Icon"></p>
+  <div id="results">
+    <h2>Instruction Summary</h2>
+    <p><strong>Materials Needed:</strong></p>
+    <div id="res-materials"></div>
+    <p><strong>Noise Level:</strong> <span id="res-noise"></span></p>
+    <p><strong>Partners Allowed:</strong> <span id="res-partners"></span></p>
     <p><strong>Instructions:</strong></p>
     <pre id="res-instructions"></pre>
     <p><strong>I'm Done, Now What:</strong></p>
-    <ul id="res-done"></ul>
-    <button onclick="goBack()">Back</button>
+    <ol id="res-done"></ol>
+    <button onclick="goBack()">Back & Reset</button>
   </div>
 
   <script>
+    const doneClickOrder = [];
+
     function toggleComputerInput() {
-      const checkbox = document.getElementById('computerOption');
-      const input = document.getElementById('computerText');
-      input.style.display = checkbox.checked ? 'block' : 'none';
+      document.getElementById('computerText').style.display = document.getElementById('computerOption').checked ? 'block' : 'none';
     }
 
     function toggleOtherInput() {
-      const checkbox = document.getElementById('otherOption');
-      const input = document.getElementById('otherText');
-      input.style.display = checkbox.checked ? 'block' : 'none';
+      document.getElementById('otherText').style.display = document.getElementById('otherOption').checked ? 'block' : 'none';
     }
 
-    const doneOrder = [];
-    document.querySelectorAll('.done-option').forEach(option => {
-      option.addEventListener('change', () => {
-        if (option.checked) {
-          doneOrder.push(option);
-        } else {
-          const idx = doneOrder.indexOf(option);
-          if (idx > -1) doneOrder.splice(idx, 1);
+    document.querySelectorAll('.done-option').forEach(cb => {
+      cb.addEventListener('click', e => {
+        const val = cb.value;
+        const id = cb.id;
+        const checked = cb.checked;
+
+        if (checked && !doneClickOrder.includes(id || val)) {
+          doneClickOrder.push(id || val);
+        } else if (!checked) {
+          const idx = doneClickOrder.indexOf(id || val);
+          if (idx > -1) doneClickOrder.splice(idx, 1);
         }
       });
     });
 
     function showResults() {
-      // Materials with icons
-      const materialSpans = Array.from(document.querySelectorAll('.icon-option input:checked')).map(cb => {
+      const checked = document.querySelectorAll('.icon-option input:checked');
+      const resContainer = document.getElementById('res-materials');
+      resContainer.innerHTML = '';
+
+      checked.forEach(cb => {
+        const value = cb.value;
         const img = cb.dataset.img;
-        return `<img src="${img}" alt="${cb.value}" style="height:30px; vertical-align:middle;"> ${cb.value}`;
+        const div = document.createElement('div');
+        div.className = 'material-item';
+        div.innerHTML = `<img src="${img}" alt="${value}"><div class="icon-label">${value}</div>`;
+        resContainer.appendChild(div);
       });
-      document.getElementById('res-materials').innerHTML = materialSpans.join(', ');
 
-      // Noise Level
-      const noiseInput = document.querySelector('input[name="noise"]:checked');
-      const noiseText = noiseInput ? noiseInput.value : '';
-      const noiseImg = noiseInput ? noiseInput.dataset.img : '';
-      document.getElementById('res-noise').textContent = noiseText;
-      document.getElementById('res-noise-img').src = noiseImg;
+      const noise = document.querySelector('input[name="noise"]:checked')?.value || '';
+      const partners = document.querySelector('input[name="partners"]:checked')?.value || '';
+      const instructions = document.getElementById('instructions').value;
 
-      // Instructions numbered
-      const instructionText = document.getElementById('instructions').value;
-      const steps = instructionText.split('\n').filter(step => step.trim() !== '');
-      const numberedSteps = steps.map((step, i) => `${i + 1}. ${step}`).join('\n');
-      document.getElementById('res-instructions').textContent = numberedSteps;
+      document.getElementById('res-noise').textContent = noise;
+      document.getElementById('res-partners').textContent = partners;
+      document.getElementById('res-instructions').textContent = instructions;
 
-      // Done options in order
       const doneList = document.getElementById('res-done');
       doneList.innerHTML = '';
-      doneOrder.forEach(opt => {
-        let text = opt.value;
-        if (opt.id === 'computerOption') {
-          const program = document.getElementById('computerText').value;
-          text = 'Use Computers' + (program ? ` - ${program}` : '');
-        } else if (opt.id === 'otherOption') {
-          const other = document.getElementById('otherText').value;
-          text = 'Other - ' + other;
+      doneClickOrder.forEach(id => {
+        const opt = document.getElementById(id) || document.querySelector(`.done-option[value="${id}"]`);
+        if (opt && opt.checked) {
+          let text = opt.value;
+          if (id === 'computerOption') {
+            const val = document.getElementById('computerText').value;
+            text = 'Use Computers' + (val ? ' - ' + val : '');
+          } else if (id === 'otherOption') {
+            const val = document.getElementById('otherText').value;
+            text = 'Other - ' + val;
+          }
+          const li = document.createElement('li');
+          li.textContent = text;
+          doneList.appendChild(li);
         }
-        const li = document.createElement('li');
-        li.textContent = text;
-        doneList.appendChild(li);
       });
 
-      document.getElementById('form').classList.add('hidden');
-      document.getElementById('results').classList.remove('hidden');
+      document.getElementById('form').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
     }
 
     function goBack() {
+      document.getElementById('results').style.display = 'none';
+      document.getElementById('form').style.display = 'block';
       location.reload();
     }
   </script>
