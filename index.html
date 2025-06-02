@@ -227,7 +227,7 @@
     <h2>Instruction Summary</h2>
     <p><strong>Materials Needed:</strong></p>
     <div id="res-materials"></div>
-    <p><strong>Noise Level:</strong> <span id="res-noise"></span></p>
+    <p><strong>Noise Level:</strong> <span id="res-noise" style="display: inline-flex; align-items: center; gap: 10px;"></span></p>
     <p><strong>Partners Allowed:</strong> <span id="res-partners"></span></p>
     <p><strong>Instructions:</strong></p>
     <pre id="res-instructions"></pre>
@@ -276,7 +276,22 @@
         resContainer.appendChild(div);
       });
 
-      const noise = document.querySelector('input[name="noise"]:checked')?.value || '';
+      const noiseOption = document.querySelector('input[name="noise"]:checked');
+const resNoise = document.getElementById('res-noise');
+resNoise.innerHTML = '';
+if (noiseOption) {
+  const noiseText = noiseOption.value;
+  const noiseImg = noiseOption.dataset.img;
+  const img = document.createElement('img');
+  img.src = noiseImg;
+  img.alt = noiseText;
+  img.style.width = '30px';
+  img.style.height = '30px';
+  resNoise.appendChild(img);
+  const span = document.createElement('span');
+  span.textContent = noiseText;
+  resNoise.appendChild(span);
+}
       const partners = document.querySelector('input[name="partners"]:checked')?.value || '';
       const instructions = document.getElementById('instructions').value;
 
